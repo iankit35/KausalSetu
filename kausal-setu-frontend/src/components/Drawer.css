@@ -1,0 +1,150 @@
+/* Drawer Overlay */
+.drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    
+    /* Hidden state */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.drawer-overlay.active {
+    /* Visible state */
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Menu Drawer */
+.menu-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100vh;
+    padding: 24px 20px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    z-index: 1001;
+    box-shadow: -8px 0 25px rgba(0, 0, 0, 0.12);
+
+    /* Off-screen by default */
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.menu-drawer.active {
+    /* Slide in when active */
+    transform: translateX(0);
+}
+
+/* Close button */
+.drawer-close {
+    align-self: flex-end;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 8px;
+    background: #f3f6f4;
+    color: #123d2b;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Profile */
+.drawer-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 5px;
+    border-bottom: 1px solid #e5ebe7;
+}
+
+.profile-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #e7f2ec;
+    color: #123d2b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.drawer-profile h3 {
+    margin: 0;
+    font-family: "Manrope", sans-serif;
+    font-size: 16px;
+    color: #17251d;
+}
+
+.drawer-profile p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #718078;
+}
+
+/* Menu */
+.drawer-menu {
+    padding-top: 20px;
+}
+
+.drawer-menu a,
+.logout {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    height: 48px;
+    padding: 0 12px;
+    border-radius: 9px;
+    color: #4c5a52;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.drawer-menu a:hover {
+    background: #f1f6f3;
+    color: #123d2b;
+}
+
+.drawer-menu i,
+.logout i {
+    width: 20px;
+    text-align: center;
+}
+
+/* Logout */
+.logout {
+    margin-top: auto;
+    color: #b23b3b;
+    border-top: 1px solid #e5ebe7;
+    border-radius: 0;
+    padding-top: 15px;
+}
+
+.logout:hover {
+    color: #a12f2f;
+    background: #fff3f3;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .menu-drawer {
+        width: 285px;
+    }
+}

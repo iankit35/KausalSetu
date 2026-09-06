@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+ 
+  :root {
+    --ink: #17221d;
+    --muted: #68746d;
+    --soft-muted: #89938e;
+    --green: #176b4d;
+    --green-dark: #0e4f39;
+    --green-light: #eaf5ef;
+    --cream: #f7f8f5;
+    --white: #ffffff;
+    --border: #e3e8e4;
+    --gold: #d69b27;
+    --red: #c34a3f;
+    --shadow: 0 20px 50px rgba(23, 34, 29, 0.09);
+  }
+ 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  body {
+    min-height: 100vh;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "DM Sans", sans-serif;
+  }
+ 
+  .page-wrap {
+    width: min(640px, 90%);
+    margin: 0 auto;
+    padding: 48px 0 70px;
+  }
+ 
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--soft-muted);
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+ 
+  .breadcrumb i { font-size: 9px; }
+  .breadcrumb span:last-child { color: var(--green); }
+ 
+  .top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    gap: 12px;
+  }
+ 
+  .top-row h1 {
+    font-family: "Manrope", sans-serif;
+    font-size: 21px;
+    letter-spacing: -0.6px;
+  }
+ 
+  .history-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+ 
+  .history-link i { font-size: 10px; }
+ 
+  /* Tracking card */
+  .tracking-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 28px;
+  }
+ 
+  .timeline-step {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    padding-bottom: 30px;
+  }
+ 
+  .timeline-step:last-child { padding-bottom: 0; }
+ 
+  .timeline-step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 34px;
+    bottom: 0;
+    border-left: 2px dashed var(--border);
+  }
+ 
+  .timeline-step.done:not(:last-child)::before {
+    border-left: 2px dashed var(--green);
+  }
+ 
+  .step-marker {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--cream);
+    color: var(--soft-muted);
+    font-size: 13px;
+    border: 2px solid var(--border);
+  }
+ 
+  .timeline-step.done .step-marker {
+    background: var(--green);
+    color: var(--white);
+    border-color: var(--green);
+  }
+ 
+  .timeline-step.active .step-marker {
+    background: var(--green-light);
+    color: var(--green);
+    border-color: var(--green);
+  }
+ 
+  .step-content { flex: 1; padding-top: 5px; }
+ 
+  .step-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+ 
+  .step-content strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--soft-muted);
+  }
+ 
+  .timeline-step.done .step-content strong,
+  .timeline-step.active .step-content strong {
+    color: var(--ink);
+  }
+ 
+  .step-sub {
+    display: block;
+    margin-top: 5px;
+    font-size: 11px;
+    color: var(--soft-muted);
+    line-height: 1.6;
+  }
+ 
+  .step-timer {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: var(--cream);
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    font-family: "Manrope", sans-serif;
+  }
+ 
+  .step-timer i { color: var(--green); font-size: 10px; }
+ 
+  .step-action-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+ 
+  .step-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 18px;
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+ 
+  .non-refundable {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--red);
+    font-style: italic;
+  }
+ 
+  .amount-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-family: "Manrope", sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--green-dark);
+  }
+ 
+  .amount-pill i { font-size: 11px; }
+ 
+  .raise-issue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+  }
+ 
+  .raise-issue a {
+    color: var(--green);
+    font-weight: 700;
+    text-decoration: underline;
+  }
+ 
+  .raise-issue i { color: var(--soft-muted); font-size: 11px; }
+ 
+  /* Empty state — shown instead of the tracking card when there is no active inspection/booking */
+  .empty-state {
+    display: none; /* set to "flex" (or remove this rule) when there is no active booking to show */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 56px 32px;
+  }
+ 
+  .empty-icon {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    background: var(--green-light);
+    color: var(--green);
+    border-radius: 50%;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+ 
+  .empty-state h2 {
+    font-family: "Manrope", sans-serif;
+    font-size: 17px;
+    letter-spacing: -0.3px;
+  }
+ 
+  .empty-state p {
+    max-width: 320px;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+ 
+  .empty-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 22px;
+    padding: 12px 20px;
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+ 
+  @media (max-width: 560px) {
+    .top-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }

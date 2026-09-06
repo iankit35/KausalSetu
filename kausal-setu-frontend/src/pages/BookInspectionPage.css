@@ -1,0 +1,597 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: #f7f9f8;
+  color: #18372a;
+}
+
+button,
+input {
+  font-family: "DM Sans", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+.inspection-page {
+  min-height: 100vh;
+  padding: 45px 7% 70px;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* Header */
+
+.page-header {
+  margin-bottom: 25px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #84928b;
+  font-size: 12px;
+
+  margin-bottom: 24px;
+}
+
+.breadcrumb i {
+  font-size: 8px;
+  color: #a9b4ae;
+}
+
+.header-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.page-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #16804d;
+  font-size: 12px;
+  font-weight: 700;
+
+  margin-bottom: 9px;
+}
+
+.page-label i {
+  font-size: 11px;
+}
+
+.header-content h1 {
+  font-family: "Manrope", sans-serif;
+  font-size: 31px;
+  line-height: 1.2;
+
+  color: #18372a;
+
+  margin-bottom: 8px;
+}
+
+.header-content p {
+  color: #718078;
+  font-size: 14px;
+}
+
+
+/* Inspection Fee */
+
+.inspection-fee {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 11px 15px;
+
+  background: #ffffff;
+  border: 1px solid #e0e9e4;
+  border-radius: 12px;
+}
+
+.fee-icon {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 9px;
+
+  background: #e8f4ee;
+  color: #16804d;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inspection-fee div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.inspection-fee small {
+  color: #89958f;
+  font-size: 10px;
+}
+
+.inspection-fee strong {
+  color: #294238;
+
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+}
+
+
+/* Info */
+
+.inspection-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+  padding: 16px 18px;
+
+  margin-bottom: 28px;
+
+  background: #eef7f2;
+  border: 1px solid #dcece3;
+  border-radius: 13px;
+}
+
+.info-icon {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+  color: #16804d;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 15px;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-content strong {
+  color: #294238;
+  font-size: 13px;
+}
+
+.info-content p {
+  max-width: 850px;
+
+  color: #718078;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+
+/* Search */
+
+.search-section {
+  display: flex;
+  gap: 10px;
+
+  margin-bottom: 25px;
+}
+
+.search-box {
+  flex: 1;
+
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 0 14px;
+
+  background: #ffffff;
+  border: 1px solid #dfe8e3;
+  border-radius: 10px;
+}
+
+.search-box i {
+  color: #8d9a94;
+  font-size: 13px;
+}
+
+.search-box input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  color: #30483d;
+  font-size: 12px;
+
+  background: transparent;
+}
+
+.search-box input::placeholder {
+  color: #a0aaa5;
+}
+
+.filter-btn {
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0 15px;
+
+  border: 1px solid #dce6e1;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #40574d;
+
+  font-size: 12px;
+}
+
+.filter-btn:hover {
+  border-color: #35a56f;
+  color: #16804d;
+}
+
+
+/* Results */
+
+.results-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+.results-header h2 {
+  font-family: "Manrope", sans-serif;
+  font-size: 19px;
+
+  color: #18372a;
+
+  margin-bottom: 4px;
+}
+
+.results-header p {
+  color: #829089;
+  font-size: 12px;
+}
+
+.result-count {
+  color: #7e8c85;
+  font-size: 11px;
+}
+
+
+/* Cards */
+
+.professionals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 17px;
+}
+
+.professional-card {
+  padding: 20px;
+
+  background: #ffffff;
+  border: 1px solid #e2eae6;
+  border-radius: 16px;
+
+  transition: all 0.2s ease;
+}
+
+.professional-card:hover {
+  border-color: #c8ddd2;
+  box-shadow: 0 8px 25px rgba(18, 61, 43, 0.07);
+  transform: translateY(-2px);
+}
+
+
+/* Profile */
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  margin-bottom: 18px;
+}
+
+.profile-image {
+  position: relative;
+
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  background: #e8f0ec;
+}
+
+.verified-dot {
+  position: absolute;
+
+  right: -1px;
+  bottom: 0;
+
+  width: 18px;
+  height: 18px;
+
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+
+  background: #16804d;
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 8px;
+}
+
+.profile-info {
+  min-width: 0;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 4px;
+}
+
+.name-row h3 {
+  font-family: "Manrope", sans-serif;
+  font-size: 15px;
+
+  color: #203d31;
+}
+
+.verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+
+  color: #16804d;
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.verified i {
+  font-size: 10px;
+}
+
+.profile-info p {
+  color: #7b8982;
+  font-size: 11px;
+
+  margin-bottom: 6px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  font-size: 11px;
+}
+
+.rating i {
+  color: #e3a929;
+  font-size: 10px;
+}
+
+.rating strong {
+  color: #40564c;
+}
+
+.rating span {
+  color: #9aa59f;
+}
+
+
+/* Details */
+
+.card-details {
+  display: flex;
+  gap: 22px;
+
+  padding: 13px 0;
+
+  border-top: 1px solid #edf1ef;
+  border-bottom: 1px solid #edf1ef;
+
+  margin-bottom: 13px;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #7c8983;
+  font-size: 11px;
+}
+
+.detail i {
+  color: #16804d;
+  font-size: 11px;
+}
+
+
+/* Skills */
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  margin-bottom: 19px;
+}
+
+.skills span {
+  padding: 5px 8px;
+
+  border-radius: 6px;
+
+  background: #f1f6f3;
+  color: #60746a;
+
+  font-size: 10px;
+}
+
+
+/* Bottom */
+
+.inspection-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.inspection-price {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.inspection-price small {
+  color: #99a49f;
+  font-size: 9px;
+}
+
+.inspection-price strong {
+  color: #18372a;
+
+  font-family: "Manrope", sans-serif;
+  font-size: 17px;
+}
+
+.confirm-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #16804d;
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  transition: all 0.2s ease;
+}
+
+.confirm-btn:hover {
+  background: #126b41;
+  transform: translateY(-1px);
+}
+
+.confirm-btn i {
+  font-size: 9px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 800px) {
+
+  .inspection-page {
+    padding: 35px 5% 60px;
+  }
+
+  .header-content {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .inspection-fee {
+    width: 100%;
+  }
+
+  .professionals-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 550px) {
+
+  .header-content h1 {
+    font-size: 26px;
+  }
+
+  .inspection-info {
+    padding: 14px;
+  }
+
+  .search-section {
+    flex-direction: column;
+  }
+
+  .filter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .results-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .inspection-bottom {
+    align-items: flex-end;
+  }
+
+  .confirm-btn {
+    padding: 10px 11px;
+  }
+}
