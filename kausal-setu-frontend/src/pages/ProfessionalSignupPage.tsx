@@ -30,6 +30,7 @@ export function ProfessionalSignupPage() {
   const [locationStatus, setLocationStatus] = useState<LocationStatus>('idle')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -71,9 +72,10 @@ export function ProfessionalSignupPage() {
     denied: 'Please enable location access in your browser settings to continue.',
   }[locationStatus]
 
-  const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
+    setSuccess('')
 
     if (categories.length === 0) {
       setError('Select at least one service category')
@@ -109,11 +111,10 @@ export function ProfessionalSignupPage() {
         return
       }
 
-      localStorage.setItem('token', data.token)
-      localStorage.setItem('profile', JSON.stringify(data.profile))
-      navigate('/worker-profile')
+      setSuccess('Account created successfully! Redirecting to login...')
+      setTimeout(() => navigate('/login'), 1500)
     } catch (err) {
-      console.error('sign up failed',err)
+      console.error('sign up failed', err)
       setError('Could not reach the server. Please try again.')
     } finally {
       setLoading(false)
@@ -308,6 +309,7 @@ export function ProfessionalSignupPage() {
             </div>
 
             {error && <p style={{ color: '#c34a3f', fontSize: '12px', fontWeight: 600, margin: '10px 0 0' }}>{error}</p>}
+            {success && <p style={{ color: '#2f9e44', fontSize: '12px', fontWeight: 600, margin: '10px 0 0' }}>{success}</p>}
 
             <button type="submit" className="create-account" disabled={loading}>
               {loading ? 'Creating account…' : <>Create professional account <i className="fa-solid fa-arrow-right"></i></>}

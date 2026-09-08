@@ -1,10 +1,33 @@
 import './WorkerProfilePage.css'
 import { Header } from '../components/Header'
+import { useEffect, useState } from 'react'
+import type { WorkerProfile } from '../types/profile'
+
+const API_BASE = import.meta.env.VITE_API_BASE_URL
 
 type WorkerProfileProps = {
   userRole:string
 }
 export function WorkerProfilePage({userRole}:WorkerProfileProps){
+
+  const [profile, setProfile] = useState<WorkerProfile | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (!token) return
+
+    fetch(`${API_BASE}/api/auth/me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((data) => setProfile(data.profile))
+      .finally(() => setLoading(false))
+  }, [])
+
+  if (loading) return <p>Loading…</p>
+  if (!profile) return <p>Could not load your profile.</p>
+
   return (
     <>
     <Header userRole={userRole}/>
@@ -29,7 +52,7 @@ export function WorkerProfilePage({userRole}:WorkerProfileProps){
  
         <div className="profile-main">
           <div className="name-line">
-            <h1>Rahul Kumar</h1>
+            <h1>{profile.name}</h1>
             <span className="verified-pill"><i className="fa-solid fa-check"></i> Verified</span>
           </div>
           <p className="role-line">Electrical Professional</p>
@@ -49,14 +72,14 @@ export function WorkerProfilePage({userRole}:WorkerProfileProps){
             <div className="info-icon"><i className="fa-solid fa-envelope"></i></div>
             <div className="info-text">
               <small>Email</small>
-              <strong>rahul.kumar@email.com</strong>
+              <strong>{profile.email}</strong>
             </div>
           </div>
           <div className="info-item">
             <div className="info-icon"><i className="fa-solid fa-phone"></i></div>
             <div className="info-text">
               <small>Phone</small>
-              <strong>+91 98765 43210</strong>
+              <strong>{profile.phone}</strong>
             </div>
           </div>
           <div className="info-item">

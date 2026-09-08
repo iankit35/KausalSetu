@@ -5,27 +5,24 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL
 
 export function UserSignupPage() {
   const navigate = useNavigate()
-
   const [form, setForm] = useState({ name: '', email: '', phone: '', password: '' })
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(false)
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
+    setSuccess('')
 
     if (form.password.length < 6) {
       setError('Password must be at least 6 characters')
       return
     }
-
     setLoading(true)
-
-    // Try to grab location quietly in the background — never blocks signup if denied
     const getLocation = () =>
       new Promise<{ longitude?: number; latitude?: number }>((resolve) => {
         if (!navigator.geolocation) return resolve({})
@@ -52,11 +49,10 @@ export function UserSignupPage() {
         return
       }
 
-      localStorage.setItem('token', data.token)
-      localStorage.setItem('profile', JSON.stringify(data.profile))
-      navigate('/user-profile')
+      setSuccess('Account created successfully! Redirecting to login...')
+      setTimeout(() => navigate('/login'), 1500)
     } catch (err) {
-      console.error('sign up failed',err)
+      console.error('sign up failed', err)
       setError('Could not reach the server. Please try again.')
     } finally {
       setLoading(false)
@@ -185,6 +181,7 @@ export function UserSignupPage() {
             </div>
 
             {error && <p style={{ color: '#c34a3f', fontSize: '12px', fontWeight: 600, marginTop: '4px' }}>{error}</p>}
+            {success && <p style={{ color: '#2f9e44', fontSize: '12px', fontWeight: 600, marginTop: '4px' }}>{success}</p>}
 
             <button type="submit" className="create-account" disabled={loading}>
               {loading ? 'Creating account…' : <>Create professional account <i className="fa-solid fa-arrow-right"></i></>}
