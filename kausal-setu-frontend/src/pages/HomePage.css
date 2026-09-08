@@ -916,3 +916,15 @@ footer {
     gap: 6px;
   }
 }
+
+
+.ministry-logo {
+  display: flex;
+  align-items: center;
+}
+
+.ministry-logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}

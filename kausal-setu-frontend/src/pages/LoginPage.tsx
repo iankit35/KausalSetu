@@ -1,8 +1,70 @@
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import './LoginPage.css'
-import {Link} from 'react-router-dom'
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL // e.g. http://localhost:4000
 
-export function LoginPage(){
+type Role = 'worker' | 'user' | 'admin'
+
+interface LoginResponse {
+  token: string
+  profile: {
+    id: string
+    name: string
+    email: string
+    role: Role
+  }
+}
+
+const ROLE_ROUTES: Record<Role, string> = {
+  worker: '/worker-profile',
+  user: '/user-profile',
+  admin: '/admin-dashboard',
+}
+
+type LoginPageProps = {
+  setUserRole: (value:string) => void
+}
+export function LoginPage({setUserRole}:LoginPageProps) {
+  const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setError('')
+    setLoading(true)
+
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
+
+      const data: LoginResponse | { error: string } = await res.json()
+
+      if (!res.ok || !('profile' in data)) {
+        setError('error' in data ? data.error : 'Login failed. Please try again.')
+        return
+      }
+
+      setUserRole(data.profile.role)
+      localStorage.setItem('token', data.token)
+      localStorage.setItem('profile', JSON.stringify(data.profile))
+      navigate(ROLE_ROUTES[data.profile.role] || '/')
+
+    } catch (err) {
+      console.error('login failed',err)
+      setError('Could not reach the server. Please check your connection and try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <main className="login-page">
       <section className="brand-panel">
@@ -56,7 +118,7 @@ export function LoginPage(){
           </div>
         </div>
 
-        <p className="panel-footer">© 2026 KaamSetu</p>
+        <p className="panel-footer">© 2026 SahyogSetu</p>
       </section>
 
       <section className="form-panel">
@@ -74,7 +136,7 @@ export function LoginPage(){
             <p>Access your bookings, services and account.</p>
           </div>
 
-          <form className="login-form">
+          <form className="login-form" onSubmit={handleSubmit}>
             <div className="input-group">
               <label htmlFor="email">Email address</label>
               <div className="input-wrapper">
@@ -84,6 +146,8 @@ export function LoginPage(){
                   type="email"
                   placeholder="you@example.com"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -98,23 +162,28 @@ export function LoginPage(){
                 <i className="fa-solid fa-lock"></i>
                 <input
                   id="password"
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   placeholder="Enter your password"
                   autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
                 <button
                   type="button"
                   className="password-toggle"
-                  aria-label="Show password"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  onClick={() => setShowPassword((prev) => !prev)}
                 >
-                  <i className="fa-regular fa-eye"></i>
+                  <i className={`fa-regular ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
                 </button>
               </div>
             </div>
 
-            <button type="submit" className="login-submit">
-              Sign in <i className="fa-solid fa-arrow-right"></i>
+            {error && <p className="form-error">{error}</p>}
+
+            <button type="submit" className="login-submit" disabled={loading}>
+              {loading ? 'Signing in…' : <>Sign in <i className="fa-solid fa-arrow-right"></i></>}
             </button>
           </form>
 

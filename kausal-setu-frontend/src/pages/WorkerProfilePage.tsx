@@ -1,7 +1,13 @@
 import './WorkerProfilePage.css'
+import { Header } from '../components/Header'
 
-export function WorkerProfilePage(){
+type WorkerProfileProps = {
+  userRole:string
+}
+export function WorkerProfilePage({userRole}:WorkerProfileProps){
   return (
+    <>
+    <Header userRole={userRole}/>
     <div className="page-wrap">
  
     <div className="breadcrumb">
@@ -81,5 +87,6 @@ export function WorkerProfilePage(){
       </div>
     </div>
   </div>
+  </>
   );
 }

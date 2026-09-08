@@ -40,7 +40,9 @@ export function InstantBookingOverlay(){
           <i className="fa-solid fa-chevron-right arrow"></i>
         </button>
       </Link>
-        <button className="service-card">
+
+      <Link to="/instant-booking">
+      <button className="service-card">
           <span className="service-card-icon">
             <i className="fa-solid fa-faucet-drip"></i>
           </span>
@@ -50,7 +52,9 @@ export function InstantBookingOverlay(){
           </span>
           <i className="fa-solid fa-chevron-right arrow"></i>
         </button>
-
+      </Link>
+        
+        <Link to="/instant-booking">
         <button className="service-card">
           <span className="service-card-icon">
             <i className="fa-solid fa-hammer"></i>
@@ -61,7 +65,9 @@ export function InstantBookingOverlay(){
           </span>
           <i className="fa-solid fa-chevron-right arrow"></i>
         </button>
-
+        </Link>
+        
+        <Link to="instant-booking">
         <button className="service-card">
           <span className="service-card-icon">
             <i className="fa-solid fa-snowflake"></i>
@@ -72,7 +78,9 @@ export function InstantBookingOverlay(){
           </span>
           <i className="fa-solid fa-chevron-right arrow"></i>
         </button>
+        </Link>
 
+        <Link to="instant-booking">
         <button className="service-card">
           <span className="service-card-icon">
             <i className="fa-solid fa-paint-roller"></i>
@@ -83,7 +91,9 @@ export function InstantBookingOverlay(){
           </span>
           <i className="fa-solid fa-chevron-right arrow"></i>
         </button>
-
+        </Link>
+        
+        <Link to="instant-booking">
         <button className="service-card">
           <span className="service-card-icon">
             <i className="fa-solid fa-broom"></i>
@@ -94,7 +104,7 @@ export function InstantBookingOverlay(){
           </span>
           <i className="fa-solid fa-chevron-right arrow"></i>
         </button>
-
+        </Link>
       </div>
     </div>
 

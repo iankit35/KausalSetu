@@ -1,15 +1,23 @@
 // Header.tsx
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Drawer } from './Drawer'
 import { useState } from 'react'
 
-type UserRole = 'guest' | 'user' | 'worker' | 'admin';
 
-export function Header() {
+type HeaderProps = {
+  userRole: string
+}
+export function Header({userRole}:HeaderProps) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-
-  // TODO: replace with real auth state, e.g. const { role } = useAuth()
-  const userRole: UserRole = 'admin';
+  const navigate = useNavigate()
+  
+  const handleProfileClick = () => {
+    if (userRole === 'guest') {
+      navigate('/login')
+    } else {
+      setIsDrawerOpen(true)
+    }
+  }
 
   return (
     <>
@@ -22,7 +30,7 @@ export function Header() {
             Sahyog<span>Setu</span>
           </span>
         </NavLink>
-
+        
         <div className="nav-location">
           <i className="fa-solid fa-location-dot"></i>
           <div>
@@ -43,7 +51,7 @@ export function Header() {
 
           <button
             type="button"
-            onClick={() => setIsDrawerOpen(true)}
+            onClick={handleProfileClick}
             className="profile-btn"
             aria-label="Account"
           >

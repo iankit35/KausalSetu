@@ -1,16 +1,17 @@
 import './AdminDashboardPage.css'
-import { Header } from '../components/Header'
+import { Link } from 'react-router-dom'
 
 export function AdminDashboardPage(){
   return (
     <>
-    <Header/>
+    <div className="admin-root">
     <aside className="sidebar">
-    <div className="brand">
+      <Link to="/">
+      <div className="brand">
       <span className="brand-mark"><i className="fa-solid fa-hands-helping"></i></span>
       <span>Sahyog<span>Setu</span></span>
     </div>
- 
+      </Link>
     <span className="sidebar-section-label">MAIN</span>
     <nav className="sidebar-nav">
       <a href="#" className="active"><i className="fa-solid fa-gauge"></i> Dashboard</a>
@@ -260,7 +261,7 @@ export function AdminDashboardPage(){
           </div>
  
           <div className="list-row">
-            <div className="row-icon payout"><i className="fa-solid fa-arrow-down-to-bracket"></i></div>
+            <div className="row-icon payout"><i className="fa-solid fa-clock"></i></div>
             <div className="row-main">
               <strong>Rahul Kumar — ₹3,000</strong>
               <span>Requested 2 Sep 2026</span>
@@ -268,7 +269,7 @@ export function AdminDashboardPage(){
           </div>
  
           <div className="list-row">
-            <div className="row-icon payout"><i className="fa-solid fa-arrow-down-to-bracket"></i></div>
+            <div className="row-icon payout"><i className="fa-solid fa-clock"></i></div>
             <div className="row-main">
               <strong>Amit Singh — ₹1,850</strong>
               <span>Requested 1 Sep 2026</span>
@@ -276,7 +277,7 @@ export function AdminDashboardPage(){
           </div>
  
           <div className="list-row">
-            <div className="row-icon payout"><i className="fa-solid fa-arrow-down-to-bracket"></i></div>
+            <div className="row-icon payout"><i className="fa-solid fa-clock"></i></div>
             <div className="row-main">
               <strong>Pawan Kumar — ₹2,400</strong>
               <span>Requested 30 Aug 2026</span>
@@ -288,6 +289,7 @@ export function AdminDashboardPage(){
     </div>
  
   </main>
+    </div>
     </>
   );
 }

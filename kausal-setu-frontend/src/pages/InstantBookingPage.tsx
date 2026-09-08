@@ -3,10 +3,13 @@ import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { Link } from 'react-router-dom'
 
-export function InstantBookingPage(){
+type InstantBookingPageProps = {
+  userRole:string
+}
+export function InstantBookingPage({userRole}:InstantBookingPageProps){
   return (
     <>
-    <Header/>
+    <Header userRole={userRole}/>
     <main className="booking-page">
     <div className="page-container">
 

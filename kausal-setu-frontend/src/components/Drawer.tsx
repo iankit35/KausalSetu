@@ -3,12 +3,12 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Drawer.css'
 
-type UserRole = 'worker' | 'user' | 'admin' | 'guest';
+export type UserRole = 'worker' | 'user' | 'admin' | 'guest';
 
 interface DrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  role: UserRole;
+  role: string; // widened to match Header's userRole: string — validated internally
   name?: string;
 }
 
@@ -17,6 +17,8 @@ interface NavItem {
   icon: string;
   label: string;
 }
+
+const VALID_ROLES: UserRole[] = ['worker', 'user', 'admin', 'guest'];
 
 const NAV_ITEMS: Record<Exclude<UserRole, 'guest'>, NavItem[]> = {
   worker: [
@@ -40,7 +42,6 @@ const NAV_ITEMS: Record<Exclude<UserRole, 'guest'>, NavItem[]> = {
   ],
 };
 
-// Links a guest can still browse without logging in
 const GUEST_BROWSE_LINKS: NavItem[] = [
   { to: '/how-it-works', icon: 'fa-circle-info', label: 'How it works' },
   { to: '/become-pro', icon: 'fa-user-plus', label: 'Become a professional' },
@@ -53,6 +54,13 @@ const ROLE_TITLES: Record<Exclude<UserRole, 'guest'>, string> = {
 };
 
 export const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, role, name = 'Rahul Kumar' }) => {
+  // Normalize whatever Header hands us into a safe, known role.
+  // Anything unexpected (empty string, undefined-as-string, typo from the API) becomes 'guest'
+  // instead of crashing on NAV_ITEMS[role] or ROLE_TITLES[role].
+  const normalizedRole: UserRole = VALID_ROLES.includes(role as UserRole)
+    ? (role as UserRole)
+    : 'guest';
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) onClose();
@@ -66,7 +74,7 @@ export const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, role, name = 'R
     return () => { document.body.style.overflow = 'unset'; };
   }, [isOpen]);
 
-  const isGuest = role === 'guest';
+  const isGuest = normalizedRole === 'guest';
 
   return (
     <>
@@ -114,12 +122,12 @@ export const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, role, name = 'R
               </div>
               <div>
                 <h3>{name}</h3>
-                <p>{ROLE_TITLES[role]}</p>
+                <p>{ROLE_TITLES[normalizedRole as Exclude<UserRole, 'guest'>]}</p>
               </div>
             </div>
 
             <nav className="drawer-menu">
-              {NAV_ITEMS[role].map((item) => (
+              {NAV_ITEMS[normalizedRole as Exclude<UserRole, 'guest'>].map((item) => (
                 <Link key={item.to} to={item.to} onClick={onClose}>
                   <i className={`fa-solid ${item.icon}`}></i>
                   <span>{item.label}</span>

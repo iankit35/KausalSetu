@@ -3,11 +3,13 @@ import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { Link } from 'react-router-dom'
 
-
-export function HomePage(){
+type HomePageProps = {
+  userRole:string
+}
+export function HomePage({userRole}:HomePageProps){
   return (
     <> 
-    <Header/>
+    <Header userRole={userRole}/>
   <main>
     <section className="hero">
       <div className="hero-content">
@@ -109,92 +111,6 @@ export function HomePage(){
             <span>Average rating</span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section className="professionals">
-      <div className="section-heading">
-        <div>
-          <span className="section-label">DISCOVER</span>
-          <h2>Trusted professionals near you</h2>
-        </div>
-        <a href="#" className="view-all">View all <i className="fa-solid fa-arrow-right"></i></a>
-      </div>
-
-      <div className="professional-grid">
-
-        <article className="professional-card">
-          <div className="profile-photo photo-electrician">
-            <div className="photo-initials">RK</div>
-            <span className="verified"><i className="fa-solid fa-check"></i> Verified</span>
-          </div>
-          <div className="card-body">
-            <div className="name-row">
-              <div>
-                <h3>Rahul Kumar</h3>
-                <p>Electrical Professional</p>
-              </div>
-              <span className="rating"><i className="fa-solid fa-star"></i> 4.8</span>
-            </div>
-            <div className="meta">
-              <span><i className="fa-solid fa-location-dot"></i> 1.2 km away</span>
-              <span><i className="fa-solid fa-briefcase"></i> 127 jobs</span>
-            </div>
-            <div className="card-footer">
-              <span className="available"><i className="fa-solid fa-circle"></i> Available today</span>
-              <a href="#">View profile</a>
-            </div>
-          </div>
-        </article>
-
-        <article className="professional-card">
-          <div className="profile-photo photo-plumber">
-            <div className="photo-initials">AS</div>
-            <span className="verified"><i className="fa-solid fa-check"></i> Verified</span>
-          </div>
-          <div className="card-body">
-            <div className="name-row">
-              <div>
-                <h3>Amit Singh</h3>
-                <p>Plumbing Professional</p>
-              </div>
-              <span className="rating"><i className="fa-solid fa-star"></i> 4.9</span>
-            </div>
-            <div className="meta">
-              <span><i className="fa-solid fa-location-dot"></i> 2.4 km away</span>
-              <span><i className="fa-solid fa-briefcase"></i> 184 jobs</span>
-            </div>
-            <div className="card-footer">
-              <span className="available"><i className="fa-solid fa-circle"></i> Available today</span>
-              <a href="#">View profile</a>
-            </div>
-          </div>
-        </article>
-
-        <article className="professional-card">
-          <div className="profile-photo photo-carpenter">
-            <div className="photo-initials">PK</div>
-            <span className="verified"><i className="fa-solid fa-check"></i> Verified</span>
-          </div>
-          <div className="card-body">
-            <div className="name-row">
-              <div>
-                <h3>Pawan Kumar</h3>
-                <p>Carpentry Professional</p>
-              </div>
-              <span className="rating"><i className="fa-solid fa-star"></i> 4.7</span>
-            </div>
-            <div className="meta">
-              <span><i className="fa-solid fa-location-dot"></i> 3.1 km away</span>
-              <span><i className="fa-solid fa-briefcase"></i> 96 jobs</span>
-            </div>
-            <div className="card-footer">
-              <span className="available"><i className="fa-solid fa-circle"></i> Available today</span>
-              <a href="#">View profile</a>
-            </div>
-          </div>
-        </article>
-
       </div>
     </section>
   </main>

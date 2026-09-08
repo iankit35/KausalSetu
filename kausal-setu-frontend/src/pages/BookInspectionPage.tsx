@@ -2,10 +2,13 @@ import './BookInspectionPage.css'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 
-export function BookInspectionPage(){
+type BookInspectionPageProps = {
+  userRole:string
+}
+export function BookInspectionPage({userRole}:BookInspectionPageProps){
   return (
     <>
-    <Header/>
+    <Header userRole={userRole}/>
     <main className="inspection-page">
 
     <div className="page-container">
@@ -49,7 +52,6 @@ export function BookInspectionPage(){
       </section>
 
 
-      
       <section className="inspection-info">
 
         <div className="info-icon">
@@ -101,25 +103,17 @@ export function BookInspectionPage(){
 
       
       <section className="professionals-grid">
-
-
-        
         <article className="professional-card">
-
           <div className="card-top">
-
             <div className="profile-image">
               <img src="workers/rahul.jpg" alt=""/>
               <span className="verified-dot">
                 <i className="fa-solid fa-check"></i>
               </span>
             </div>
-
             <div className="profile-info">
-
               <div className="name-row">
                 <h3>Rahul Kumar</h3>
-
                 <span className="verified">
                   <i className="fa-solid fa-circle-check"></i>
                   Verified
@@ -140,19 +134,15 @@ export function BookInspectionPage(){
 
 
           <div className="card-details">
-
             <div className="detail">
               <i className="fa-solid fa-location-dot"></i>
               <span>1.2 km away</span>
             </div>
-
             <div className="detail">
               <i className="fa-solid fa-briefcase"></i>
               <span>340+ services</span>
             </div>
-
           </div>
-
 
           <div className="skills">
             <span>Electrical</span>
@@ -162,7 +152,6 @@ export function BookInspectionPage(){
 
 
           <div className="inspection-bottom">
-
             <div className="inspection-price">
               <small>Inspection fee</small>
               <strong>₹49</strong>
